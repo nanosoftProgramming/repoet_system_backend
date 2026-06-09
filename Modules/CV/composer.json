@@ -1,0 +1,33 @@
+{
+    "name": "nwidart/cv",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\CV\\": "",
+            "Modules\\CV\\App\\": "app/",
+            "Modules\\CV\\Database\\Factories\\": "database/factories/",
+            "Modules\\CV\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\CV\\Tests\\": "tests/"
+        }
+    }
+}
+
+

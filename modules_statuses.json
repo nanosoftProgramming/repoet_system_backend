@@ -1,0 +1,12 @@
+{
+    "Common": true,
+    "User": true,
+    "Notification": false,
+    "Course": true,
+    "Enrollment": true,
+    "Attendance": true,
+    "Exam": true,
+    "Question": true,
+    "CV": true,
+    "Survey": true
+}

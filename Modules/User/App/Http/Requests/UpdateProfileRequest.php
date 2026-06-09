@@ -1,0 +1,75 @@
+<?php
+
+namespace Modules\User\App\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\Exceptions\HttpResponseException;
+
+class UpdateProfileRequest extends FormRequest
+{
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, mixed>
+     */
+    public function rules(): array
+    {
+        $userId = auth('user')->id();
+        return [
+            'name' => ['nullable', 'string', 'max:255'],
+            'phone' => ['nullable', 'string', 'unique:users,phone,' . $userId],
+            'email' => ['nullable', 'email', 'unique:users,email,' . $userId],
+            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp', 'max:1024'],
+            'identity_number' => ['nullable', 'string', 'unique:users,identity_number,' . $userId],
+            'username' => ['nullable', 'string', 'unique:users,username,' . $userId],
+            'national_number' => ['nullable', 'string', 'unique:users,national_number,' . $userId],
+            'birth_date' => ['nullable', 'date'],
+            'file' => ['nullable', 'file', 'mimes:pdf,doc,docx,xls,xlsx,ppt,pptx', 'max:1024'],
+        ];
+    }
+
+    /**
+     * Get custom attributes for validator errors.
+     */
+    public function attributes(): array
+    {
+        return [
+            'name' => 'Name',
+            'phone' => 'Phone',
+            'image' => 'Image',
+            'email' => 'Email',
+            'identity_number' => 'Identity Number',
+            'username' => 'Username',
+            'national_number' => 'National Number',
+            'birth_date' => 'Birth Date',
+            'file' => 'File',
+        ];
+    }
+
+    /**
+     * Determine if the user is authorized to make this request.
+     */
+    public function authorize(): bool
+    {
+        return true;
+    }
+
+    /**
+     * Handle a failed validation attempt.
+     *
+     * @param \Illuminate\Contracts\Validation\Validator $validator
+     * @throws \Illuminate\Http\Exceptions\HttpResponseException
+     */
+    protected function failedValidation(Validator $validator): void
+    {
+        throw new HttpResponseException(
+            returnValidationMessage(
+                false,
+                trans('validation.rules_failed'),
+                $validator->errors()->messages(),
+                'unprocessable_entity'
+            )
+        );
+    }
+}
