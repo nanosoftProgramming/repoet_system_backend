@@ -230,11 +230,11 @@ public function answers()
         $query->where('student_id', $user->id);
     }
 
-    if ($user->hasRole('Academy')) {
-        $query->whereHas('student', function ($q) use ($user) {
-            $q->where('academy_id', $user->id);
-        });
-    }
+    // if ($user->hasRole('Academy')) {
+    //     $query->whereHas('student', function ($q) use ($user) {
+    //         $q->where('academy_id', $user->id);
+    //     });
+    // }
 
     $submissions = $query->get();
 
