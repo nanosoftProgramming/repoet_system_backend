@@ -96,16 +96,15 @@ $academy = \Modules\User\App\Models\User::find($id);
     // حذف أكاديمية
 public function destroy($id)
 {
-      dd(auth()->user()->getRoleNames(), auth()->user()->hasRole('Super Admin', 'user'));
+      dd('DELETE REACHED');
 
-    $user = auth()->user();
-    // $academy = User::findOrFail($id);
+    $academy = User::findOrFail($id);
 
-    // $academy->delete();
+    $academy->delete();
 
-    // return response()->json([
-    //     'status' => true,
-    //     'message' => 'Academy deleted successfully'
-    // ]);
+    return response()->json([
+        'status' => true,
+        'message' => 'Academy deleted successfully'
+    ]);
 }
 }
