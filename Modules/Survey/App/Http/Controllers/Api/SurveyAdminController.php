@@ -16,7 +16,8 @@ class SurveyAdminController extends Controller
     public function __construct(private SurveyService $surveyService)
     {
 $this->middleware('auth:user')->except(['showSurvey']);
-    $this->middleware('role:Super Admin|Academy')->except(['showSurvey']);    }
+    // $this->middleware('role:Super Admin|Academy')->except(['showSurvey']);
+        }
 
     public function storeSurvey(Request $request)
     {
