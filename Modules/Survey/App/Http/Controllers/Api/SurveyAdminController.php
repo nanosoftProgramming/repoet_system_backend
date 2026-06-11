@@ -165,18 +165,15 @@ public function toggleActive($id)
 
     public function deleteSurvey($id)
     {
-      dd(auth()->user()->getRoleNames(), auth()->user()->hasRole('Super Admin', 'user'));
+        $survey = Survey::find($id);
+        if (!$survey) {
+            return response()->json(['success' => false, 'message' => 'Survey not found'], 404);
+        }
 
-    $user = auth()->user();
-        // $survey = Survey::find($id);
-        // if (!$survey) {
-        //     return response()->json(['success' => false, 'message' => 'Survey not found'], 404);
-        // }
+        $survey->questions()->delete();
+        $survey->delete();
 
-        // $survey->questions()->delete();
-        // $survey->delete();
-
-        // return response()->json(['success' => true, 'message' => 'Survey deleted successfully']);
+        return response()->json(['success' => true, 'message' => 'Survey deleted successfully']);
     }
 
 public function testAnswers()
