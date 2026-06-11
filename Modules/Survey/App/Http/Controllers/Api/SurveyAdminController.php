@@ -111,10 +111,13 @@ public function toggleActive($id)
         $question = $this->surveyService->createQuestion($data);
         return returnMessage(true, 'Question created successfully.', $question);
     }
-
     public function updateSurvey(Request $request, $id)
-    {
-      $dd("rrrrrr")
+{
+    dd("rrrrrr");
+}
+
+//     public function updateSurvey(Request $request, $id)
+//     {
 //         $request->validate([
 //             'name' => 'required|string',
 //             'academy_id' => 'nullable|exists:users,id',
@@ -150,7 +153,7 @@ public function toggleActive($id)
 //             'message' => 'Survey updated successfully',
 //             'survey' => $survey->load('questions')
 //         ]);
-    }
+//     }
 
     public function getQuestions(Request $request)
     {
