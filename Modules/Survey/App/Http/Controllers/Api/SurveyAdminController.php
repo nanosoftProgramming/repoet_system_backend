@@ -176,7 +176,9 @@ public function toggleActive($id)
         return response()->json(['success' => true, 'message' => 'Survey deleted successfully']);
     }
 
-public function testAnswers()
+
+
+    public function testAnswers()
 {
     return response()->json([
         'answers_count' => \Modules\Survey\App\Models\SurveyAnswer::count(),
