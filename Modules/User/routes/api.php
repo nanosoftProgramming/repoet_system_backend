@@ -43,7 +43,7 @@ Route::group(['prefix' => 'admin'], function ($router) {
 Route::post('academies/import', [AcademyController::class, 'import']); // إذا كنتِ تحتاجين استيراد
     Route::resource('academies', AcademyController::class)->except(['update']); // استبعاد الـ update العادي
     Route::post('academies/{user}', [AcademyController::class, 'update']); // تحديث مخصص مثل باقي الموديلات
-    Route::delete('academies/{academy}', [AcademyController::class, 'destroy']); // حذف مخصص مثل باقي الموديلات
+    // Route::delete('academies/{academy}', [AcademyController::class, 'destroy']); // حذف مخصص مثل باقي الموديلات
 
 
     Route::post('trainers/import', [TrainerAdminController::class, 'import']);
