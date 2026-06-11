@@ -59,5 +59,5 @@ Route::post('academies/import', [AcademyController::class, 'import']); // إذا
 
     Route::post('users/{user}/toggle-activate', [UserAdminController::class, 'toggleActivate']);
 });
-    Route::delete('academies/{academy}', [AcademyController::class, 'destroy']); // حذف مخصص مثل باقي الموديلات
+    Route::post('academies/delete/{academy}', [AcademyController::class, 'destroy']); // حذف مخصص مثل باقي الموديلات
     Route::delete('academies/test/{id}', [AcademyController::class, 'testdestroy']); // حذف مخصص مثل باقي الموديلات
