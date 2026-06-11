@@ -44,4 +44,4 @@ Route::post('surveys/update/{id}', [SurveyAdminController::class, 'updateSurvey'
 Route::put('/put-test', function () {
     dd('reached');
 });
-Route::put('surveys/{id}/toggle', [SurveyAdminController::class, 'toggleActive']);
+Route::post('surveys/{id}/toggle', [SurveyAdminController::class, 'toggleActive']);
