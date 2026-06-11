@@ -23,6 +23,7 @@ use Modules\User\App\Http\Controllers\Api\AcademyController;
 Route::group([
     'prefix' => 'user',
 ], function ($router) {
+  
     Route::group(['prefix' => 'auth'], function ($router) {
         Route::post('login', [UserAuthController::class, 'login']);
         Route::post('logout', [UserAuthController::class, 'logout']);

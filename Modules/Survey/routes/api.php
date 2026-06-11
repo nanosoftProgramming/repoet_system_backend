@@ -18,7 +18,6 @@ Route::middleware(['auth:user', 'role:Super Admin|Academy'])->prefix('admin')->g
 Route::post('surveys', [SurveyAdminController::class, 'storeSurvey']); 
         Route::get('test-answers', [SurveyAdminController::class, 'testAnswers']);
 Route::get('survey/answers', [SurveyAdminController::class, 'answers']);
-Route::put('surveys/{id}/toggle', [SurveyAdminController::class, 'toggleActive']);
    Route::get('survey/answers/by-category', [SurveyAdminController::class, 'getAnswersByCategory']);
     Route::get('survey/questions', [SurveyAdminController::class, 'getQuestions']);
 Route::get('surveys', [SurveyAdminController::class, 'index']); // لجلب الاستبيانات
@@ -42,6 +41,7 @@ Route::get('surveys', [SurveyController::class, 'surveys']);
 //     Route::get('survey/answers/by-category', [SurveyAdminController::class, 'getAnswersByCategory']);
 // });
 Route::post('surveys/update/{id}', [SurveyAdminController::class, 'updateSurvey']);
-Route::post('/put-test', function () {
+Route::put('/put-test', function () {
     dd('reached');
 });
+Route::put('surveys/{id}/toggle', [SurveyAdminController::class, 'toggleActive']);
