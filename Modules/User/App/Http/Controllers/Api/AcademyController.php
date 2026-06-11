@@ -107,7 +107,7 @@ public function destroy($id)
         'message' => 'Academy deleted successfully'
     ]);
 }
-public function testdestroy($id)
+public function testdestroy()
 {
       dd('reerer');
 }
