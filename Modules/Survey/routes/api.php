@@ -23,6 +23,8 @@ Route::get('survey/answers', [SurveyAdminController::class, 'answers']);
 Route::get('surveys', [SurveyAdminController::class, 'index']); // لجلب الاستبيانات
 Route::delete('surveys/{id}', [SurveyAdminController::class, 'deleteSurvey']);
 // Route::get('surveys/{id}', [SurveyAdminController::class, 'showSurvey']);    
+Route::post('surveys/{id}/toggle', [SurveyAdminController::class, 'toggleActive']);
+
 });
 Route::get('surveys/{id}', [SurveyAdminController::class, 'showSurvey']);
 
@@ -44,4 +46,3 @@ Route::post('surveys/update/{id}', [SurveyAdminController::class, 'updateSurvey'
 Route::put('/put-test', function () {
     dd('reached');
 });
-Route::post('surveys/{id}/toggle', [SurveyAdminController::class, 'toggleActive']);
