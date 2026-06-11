@@ -112,49 +112,46 @@ public function toggleActive($id)
         $question = $this->surveyService->createQuestion($data);
         return returnMessage(true, 'Question created successfully.', $question);
     }
+
+
     public function updateSurvey(Request $request, $id)
-{
-    dd("rrrrrr");
-}
+    {
+        $request->validate([
+            'name' => 'required|string',
+            'academy_id' => 'nullable|exists:users,id',
+            'questions' => 'required|array|min:1',
+            'questions.*.question' => 'required|string',
+            'questions.*.type' => 'required|in:text,rating,boolean',
+                ]);
 
-//     public function updateSurvey(Request $request, $id)
-//     {
-//         $request->validate([
-//             'name' => 'required|string',
-//             'academy_id' => 'nullable|exists:users,id',
-//             'questions' => 'required|array|min:1',
-//             'questions.*.question' => 'required|string',
-//             'questions.*.type' => 'required|in:text,rating,boolean',
-//                 ]);
+        $survey = Survey::find($id);
+        if (!$survey) {
+            return response()->json(['success' => false, 'message' => 'Survey not found'], 404);
+        }
 
-//         $survey = Survey::find($id);
-//         if (!$survey) {
-//             return response()->json(['success' => false, 'message' => 'Survey not found'], 404);
-//         }
+        $survey->update([
+            'name' => $request->name,
+            'academy_id' => $request->academy_id,
+        ]);
 
-//         $survey->update([
-//             'name' => $request->name,
-//             'academy_id' => $request->academy_id,
-//         ]);
+        $survey->questions()->delete();
 
-//         $survey->questions()->delete();
+        foreach ($request->questions as $item) {
+            SurveyQuestion::create([
+                'survey_id' => $survey->id,
+                'question' => $item['question'],
+'type' => $item['type'],
+                'survey_question_category_id' => $item['survey_question_category_id'] ?? null,
+                'order' => 1
+            ]);
+        }
 
-//         foreach ($request->questions as $item) {
-//             SurveyQuestion::create([
-//                 'survey_id' => $survey->id,
-//                 'question' => $item['question'],
-// 'type' => $item['type'],
-//                 'survey_question_category_id' => $item['survey_question_category_id'] ?? null,
-//                 'order' => 1
-//             ]);
-//         }
-
-//         return response()->json([
-//             'success' => true,
-//             'message' => 'Survey updated successfully',
-//             'survey' => $survey->load('questions')
-//         ]);
-//     }
+        return response()->json([
+            'success' => true,
+            'message' => 'Survey updated successfully',
+            'survey' => $survey->load('questions')
+        ]);
+    }
 
     public function getQuestions(Request $request)
     {
