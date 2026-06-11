@@ -19,7 +19,7 @@ class AcademyController extends Controller
     public function __construct(private UserService $userService)
     {
         $this->middleware('auth:user');
-// $this->middleware('role:Super Admin|Trainer|Academy');
+$this->middleware('role:Super Admin|Trainer|Academy');
     }
     // عرض جميع الأكاديميات
 
@@ -107,4 +107,9 @@ public function destroy($id)
         'message' => 'Academy deleted successfully'
     ]);
 }
+public function testdestroy($id)
+{
+      dd('reerer');
+}
+
 }
