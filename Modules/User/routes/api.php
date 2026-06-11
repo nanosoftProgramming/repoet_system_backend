@@ -52,6 +52,7 @@ Route::post('academies/import', [AcademyController::class, 'import']); // إذا
     Route::post('instructors/import', [InstructorAdminController::class, 'import']);
     Route::resource('instructors', InstructorAdminController::class)->except(['update']);
     Route::post('instructors/{user}', [InstructorAdminController::class, 'update']);
+    Route::post('academies/delete/{academy}', [AcademyController::class, 'destroy']); // حذف مخصص مثل باقي الموديلات
 
     Route::post('students/import', [StudentAdminController::class, 'import']);
     Route::resource('students', StudentAdminController::class)->except('update');
@@ -59,5 +60,4 @@ Route::post('academies/import', [AcademyController::class, 'import']); // إذا
 
     Route::post('users/{user}/toggle-activate', [UserAdminController::class, 'toggleActivate']);
 });
-    Route::post('academies/delete/{academy}', [AcademyController::class, 'destroy']); // حذف مخصص مثل باقي الموديلات
     Route::delete('academies/test/{id}', [AcademyController::class, 'testdestroy']); // حذف مخصص مثل باقي الموديلات
