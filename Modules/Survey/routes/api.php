@@ -41,7 +41,7 @@ Route::get('surveys', [SurveyController::class, 'surveys']);
 //     Route::get('survey/answers', [SurveyAdminController::class, 'index']);
 //     Route::get('survey/answers/by-category', [SurveyAdminController::class, 'getAnswersByCategory']);
 // });
-Route::put('surveys/{id}', [SurveyAdminController::class, 'updateSurvey']);
-Route::put('/put-test', function () {
+Route::post('surveys/update/{id}', [SurveyAdminController::class, 'updateSurvey']);
+Route::post('/put-test', function () {
     dd('reached');
 });
